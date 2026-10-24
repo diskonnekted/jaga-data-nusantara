@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: "Source Serif 4";
+    --font-reading: "EB Garamond";
+  }
+
+  /* Newsprint: flat and square */
+  * {
+    border-radius: 0 !important;
+  }
+
+  body {
+    background-color: #f3efe5;
+    color: #191916;
+    font-family: var(--font-reading), Georgia, serif;
+    font-size: 20px; /* --dp-typography-body */
+    line-height: 1.3; /* --dp-typography-body-leading */
+  }
+
+  /* Solid offset outline, no ring blur */
+  :focus-visible {
+    outline: 2px solid #191916;
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation: none !important;
+      transition: none !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Small uppercase label: 12px / 650 / 0.09em */
+  .kicker {
+    font-family: var(--font-display), Georgia, serif;
+    @apply text-[12px] font-[650] uppercase leading-[1.2] tracking-[0.09em];
+  }
+
+  /* Square actions, thin black border, immediate invert on hover */
+  .btn {
+    font-family: var(--font-display), Georgia, serif;
+    @apply inline-flex min-h-[44px] items-center justify-center gap-2 border border-ink px-5 text-[15px] font-semibold leading-[1.2];
+  }
+  .btn-ghost {
+    @apply text-ink hover:bg-ink hover:text-ground;
+  }
+  .btn-solid {
+    @apply bg-ink text-ground hover:bg-ground hover:text-ink;
+  }
+
+  /* Reserved ruled placeholder space (grayscale editorial image slot) */
+  .placeholder-rule {
+    @apply flex aspect-[4/3] items-center justify-center border border-rule text-secondary;
+  }
+}
